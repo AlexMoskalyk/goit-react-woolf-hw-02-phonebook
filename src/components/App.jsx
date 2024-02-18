@@ -22,23 +22,23 @@ export default class App extends Component {
   };
 
   createConatct = item => {
-    const id = nanoid();
-    const optimiseItemData = {
-      name: eachWordWithCapitalLetter(item.name),
-      number: item.number,
-      id,
-    };
     if (
       this.state.contacts.some(
-        contact => contact.name === optimiseItemData.name
+        contact => contact.name.toLowerCase() === item.name.toLowerCase()
       )
     ) {
-      alert(`${optimiseItemData.name} is already exist!`);
+      alert(`${item.name} is already exist!`);
       return;
     }
 
+    const optimiseItemData = {
+      name: eachWordWithCapitalLetter(item.name),
+      number: item.number,
+      id: nanoid(),
+    };
+
     this.setState(prev => ({
-      contacts: [...prev.contacts, optimiseItemData],
+      contacts: [optimiseItemData, ...prev.contacts],
     }));
   };
 

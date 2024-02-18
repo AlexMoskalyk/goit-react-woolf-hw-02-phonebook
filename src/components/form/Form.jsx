@@ -15,8 +15,16 @@ export default class Form extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
+
+    const trimmedName = this.state.name.trim().toLowerCase();
+
+    if (!trimmedName) {
+      alert('Пожалуйста, введите корректное имя');
+      return;
+    }
+
     const optimizeData = {
-      name: this.state.name.trim().toLowerCase(),
+      name: trimmedName,
       number: this.state.number,
     };
     this.props.createConatct({ ...optimizeData });

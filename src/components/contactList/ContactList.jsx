@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ContactItem from './ContactItem';
 
-export default class ContactList extends Component {
-  render() {
-    return (
-      <ul>
-        {this.props.contacts.map(contact => (
-          <ContactItem
-            key={contact.id}
-            contact={contact}
-            deleteContact={this.props.deleteContact}
-          />
-        ))}
-      </ul>
-    );
-  }
-}
+const ContactList = ({ contacts, deleteContact }) => {
+  return (
+    <ul>
+      {contacts.map(contact => (
+        <ContactItem
+          key={contact.id}
+          contact={contact}
+          deleteContact={deleteContact}
+        />
+      ))}
+    </ul>
+  );
+};
+
+export default ContactList;
